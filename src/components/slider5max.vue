@@ -8,7 +8,6 @@
           class="card-slider-item"
           v-for="(items, index) in showImages"
           :key="index"
-          v-show="items"
         >
           <img :src="items.src" alt="" />
         </div>

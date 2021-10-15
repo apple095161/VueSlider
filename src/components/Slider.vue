@@ -142,9 +142,11 @@ export default {
 </script>
 <style lang="scss" scoped>
 .card-slider {
+  max-width: 600px;
   display: flex;
   width: 100%;
   overflow: hidden;
+  margin: 0 auto;
   .card-slider-items {
     display: flex;
     width: 100%;
@@ -154,7 +156,7 @@ export default {
       margin: 10px;
       img {
         width: 100%;
-        height: 600px;
+        height: 500px;
       }
     }
   }
