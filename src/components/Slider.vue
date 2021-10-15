@@ -11,12 +11,11 @@
       @touchstart="touchstart"
       @touchend="touchend"
     >
-      <transition-group class="card-slider-items" name="fade">
+      <transition-group class="card-slider-items" name="flip-list">
         <div
           class="card-slider-item"
-          v-for="(items, index) in showImages"
-          :key="index"
-          v-show="items"
+          v-for="items in showImages"
+          :key="items.id"
         >
           <img :src="items.src" alt="" @click="imgClick(items)" />
         </div>
@@ -60,11 +59,26 @@ export default {
       thStart: 0,
       transitionName: "left-in",
       item: [
-        "https://images.pexels.com/photos/2583852/pexels-photo-2583852.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=480&w=320",
-        "https://images.pexels.com/photos/2440061/pexels-photo-2440061.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=480&w=320",
-        "https://images.pexels.com/photos/3571576/pexels-photo-3571576.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=480&w=320",
-        "https://images.pexels.com/photos/1067333/pexels-photo-1067333.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=480&w=320",
-        "https://images.pexels.com/photos/1598073/pexels-photo-1598073.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=480&w=320",
+        {
+          id: 1,
+          src: "https://images.pexels.com/photos/2583852/pexels-photo-2583852.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=480&w=320",
+        },
+        {
+          id: 2,
+          src: "https://images.pexels.com/photos/2440061/pexels-photo-2440061.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=480&w=320",
+        },
+        {
+          id: 3,
+          src: "https://images.pexels.com/photos/3571576/pexels-photo-3571576.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=480&w=320",
+        },
+        // {
+        //   id: 4,
+        //   src: "https://images.pexels.com/photos/1067333/pexels-photo-1067333.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=480&w=320",
+        // },
+        // {
+        //   id: 5,
+        //   src: "https://images.pexels.com/photos/1598073/pexels-photo-1598073.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=480&w=320",
+        // },
       ],
     };
   },
@@ -75,12 +89,12 @@ export default {
       const total = this.item.length;
       let count;
       if (total > 0) {
-        while (ary.length < 5 + 4) {
+        while (ary.length < 3 + 4) {
           count = Math.floor(ary.length / total);
           for (let i = 0; i < total; i++) {
             ary.push({
-              id: count,
-              src: this.item[i],
+              id: count + "-" + this.item[i].id,
+              src: this.item[i].src,
             });
           }
         }
@@ -162,11 +176,11 @@ export default {
 </script>
 <style lang="scss" scoped>
 .card-slider {
-  max-width: 600px;
   display: flex;
   width: 100%;
   overflow: hidden;
   margin: 0 auto;
+  max-width: 600px;
   .card-slider-items {
     display: flex;
     width: 100%;
@@ -178,19 +192,23 @@ export default {
         width: 100%;
         height: 500px;
       }
+      &:first-child {
+        z-index: -1;
+        visibility: hidden;
+      }
+      &:last-child {
+        z-index: -1;
+        visibility: hidden;
+      }
     }
   }
-  // .card-slider-items {
-  //   display: flex;
-  //   width: 100%;
-  //   margin-left: calc(-1 * 25% * 2.5);
-  //   .card-slider-item {
-  //     flex: calc(25% - 20px) 0 0;
-  //     margin: 10px;
-  //     img {
-  //       width: 100%;
-  //     }
-  //   }
-  // }
+}
+.card-slider-item:first-child,
+.card-slider-item:last-child {
+  z-index: -1;
+  visibility: hidden;
+}
+.flip-list-move {
+  transition: transform .5s;
 }
 </style>
