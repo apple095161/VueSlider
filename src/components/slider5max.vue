@@ -2,13 +2,7 @@
   <div>
     <button @click="change(now - 1)">Prev</button>
     <button @click="change(now + 1)">Next</button>
-    <div
-      class="card-slider"
-      @dragstart="startDrag(item, $event)"
-      @drop="onDrop($event, 1)"
-      @dragover="dragover"
-      @dragend="dragEnd"
-    >
+    <div class="card-slider">
       <transition-group class="card-slider-items" name="fade">
         <div
           class="card-slider-item"
@@ -16,7 +10,7 @@
           :key="index"
           v-show="items"
         >
-          <img :src="items.src" alt="" @click="imgClick(items)" />
+          <img :src="items.src" alt="" />
         </div>
       </transition-group>
     </div>
@@ -54,7 +48,6 @@ export default {
   data() {
     return {
       now: 0,
-      dpStart: 0,
       transitionName: "left-in",
       item: [
         "https://images.pexels.com/photos/2583852/pexels-photo-2583852.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=480&w=320",
@@ -93,43 +86,9 @@ export default {
     this.test();
   },
   methods: {
-    onDrop() {
-      // if (ev.clientX > 150) {
-      //   ev.target.style.transform = `translateX(${ev.clientX}px)`;
-      // }
-    },
-    dragover() {
-      // const el = document.querySelector(".card-slider .card-slider-items");
-      // console.log(ev);
-      // if (ev.clientX < 1920 / 2) {
-      //   el.style.transform = `translateX(${ev.clientX}px)`;
-      // } else {
-      //   el.style.transform = `translateX(-${this.dpStart - ev.clientX}px)`;
-      // }
-    },
-    startDrag(s, ev) {
-      this.dpStart = ev.clientX;
-    },
-    dragEnd(ev) {
-      // const el = document.querySelector(".card-slider .card-slider-items");
-      if (ev.clientX - this.dpStart > 50) {
-        this.now--;
-        if (this.now < 0) {
-          this.now = 9;
-        }
-      } else if (ev.clientX - this.dpStart < -50) {
-        this.now++;
-        if (this.now > this.showImages.length - 1) {
-          this.now = 0;
-        }
-      }
-    },
-    imgClick() {
-      // console.log(item);
-    },
     test() {
-      // const start = this.now - 4;
-      // console.log(this.allImages.slice(start), this.allImages.slice(0, start));
+      const start = this.now - 4;
+      console.log(this.allImages.slice(start), this.allImages.slice(0, start));
       // return this.allImages.slice(start).concat(this.allImages.slice(0, start));
     },
     change(index) {
