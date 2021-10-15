@@ -8,6 +8,8 @@
       @drop="onDrop($event, 1)"
       @dragover="dragover"
       @dragend="dragEnd"
+      @touchstart="touchstart"
+      @touchend="touchend"
     >
       <transition-group class="card-slider-items" name="fade">
         <div
@@ -55,6 +57,7 @@ export default {
     return {
       now: 0,
       dpStart: 0,
+      thStart: 0,
       transitionName: "left-in",
       item: [
         "https://images.pexels.com/photos/2583852/pexels-photo-2583852.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=480&w=320",
@@ -131,6 +134,23 @@ export default {
       // const start = this.now - 4;
       // console.log(this.allImages.slice(start), this.allImages.slice(0, start));
       // return this.allImages.slice(start).concat(this.allImages.slice(0, start));
+    },
+    touchstart(ev) {
+      this.thStart = ev.touches[0].clientX;
+    },
+    touchend(ev) {
+      let thMOve = ev.changedTouches[0].clientX;
+      if (thMOve - this.thStart > 50) {
+        this.now--;
+        if (this.now < 0) {
+          this.now = 9;
+        }
+      } else if (thMOve - this.thStart < -50) {
+        this.now++;
+        if (this.now > this.showImages.length - 1) {
+          this.now = 0;
+        }
+      }
     },
     change(index) {
       const limit = this.allImages.length - 1;
