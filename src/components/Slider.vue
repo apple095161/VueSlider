@@ -107,13 +107,13 @@ export default {
   .card-slider-items {
     display: flex;
     width: 100%;
-    margin-left: calc(-1 * 25% * 4);
+    margin-left: calc(-1 * 25% * 6);
     .card-slider-item {
-      flex: calc(60% - 20px) 0 0;
+      flex: calc(80% - 20px) 0 0;
       margin: 10px;
       img {
         width: 100%;
-        height: 500px;
+        height: 600px;
       }
     }
   }
