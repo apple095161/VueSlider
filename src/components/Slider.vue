@@ -71,14 +71,14 @@ export default {
           id: 3,
           src: "https://images.pexels.com/photos/3571576/pexels-photo-3571576.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=480&w=320",
         },
-        // {
-        //   id: 4,
-        //   src: "https://images.pexels.com/photos/1067333/pexels-photo-1067333.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=480&w=320",
-        // },
-        // {
-        //   id: 5,
-        //   src: "https://images.pexels.com/photos/1598073/pexels-photo-1598073.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=480&w=320",
-        // },
+        {
+          id: 4,
+          src: "https://images.pexels.com/photos/1067333/pexels-photo-1067333.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=480&w=320",
+        },
+        {
+          id: 5,
+          src: "https://images.pexels.com/photos/1598073/pexels-photo-1598073.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=480&w=320",
+        },
       ],
     };
   },
